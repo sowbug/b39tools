@@ -144,6 +144,14 @@ class Bip32Explorer:
         addrs.append(subkey.address())
     return addrs
 
+  def CheckAddress(self, address):
+    a = address
+    return \
+      a in self.chain44_addresses or \
+      a in self.chain49_addresses or \
+      a in self.chain84_addresses or \
+      a in self.chain60_addresses
+
   bip39_seed = property(GetBip39Seed, SetBip39Seed)
   bip39_words = property(GetBip39Words, SetBip39Words)
   bip39_passphrase = property(GetBip39Passphrase, SetBip39Passphrase)
