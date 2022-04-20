@@ -152,6 +152,14 @@ class Bip32Explorer:
       a in self.chain84_addresses or \
       a in self.chain60_addresses
 
+  def GuessAndSetXpub(self, xpub):
+    if xpub.startswith("xpub"):
+      self.xpub44 = xpub
+    if xpub.startswith("ypub"):
+      self.ypub49 = xpub
+    if xpub.startswith("zpub"):
+      self.zpub84 = xpub
+
   bip39_seed = property(GetBip39Seed, SetBip39Seed)
   bip39_words = property(GetBip39Words, SetBip39Words)
   bip39_passphrase = property(GetBip39Passphrase, SetBip39Passphrase)

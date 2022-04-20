@@ -41,20 +41,20 @@ class MarkdownFormatter():
 
   def render_words(self, text):
     text = MarkdownFormatter.RenderWordListAsMatrix(text)
-    return f"* {'BIP-39 words:':<18}\n```\n{text}```\n"
+    return f"* {'BIP-39 words:':<20}\n```\n{text}```\n"
 
   def render_passphrase(self, text):
-    return f"* {'BIP-39 passphrase:':<18}`{text}`\n"
+    return f"* {'BIP-39 passphrase:':<20}`{text}`\n"
 
   def render_seed(self, text):
     text = text.hex()
-    return f"* {'BIP-39 seed:':<18}`{text}`\n"
+    return f"* {'BIP-39 seed:':<20}`{text}`\n"
 
   def render_xpub(self, text):
-    return f"* {'xpub:':<18}`{text}`\n"
+    return f"* {'xpub:':<20}`{text}`\n"
 
   def render_xprv(self, text):
-    return f"* {'xprv:':<18}`{text}`\n"
+    return f"* {'xprv:':<20}`{text}`\n"
 
   def RenderAccount(self, include_private=False):
     md = ""
