@@ -44,8 +44,9 @@ def main():
     bip39_passphrase = base58.b58encode(
         secrets.token_bytes(BIP39_PASSPHRASE_LEN)).decode("utf-8")
 
+  bip39_words_as_matrix = mdformatter.MarkdownFormatter.RenderWordListAsMatrix(bip39_words)
   plaintext = f"{'BIP 39:':<12} {bip39_words}\n{'Passphrase:':<12} {bip39_passphrase}\n"
-  plaintext_md = f"BIP 39: `{bip39_words}`\n\nPassphrase: `{bip39_passphrase}`\n"
+  plaintext_md = f"### BIP 39\n```\n{bip39_words_as_matrix}```\n### Passphrase\n```\n{bip39_passphrase}\n```\n"
 
   master_secret = secrets.token_bytes(MASTER_SECRET_LEN)
   master_secret_text = master_secret.hex()
@@ -53,10 +54,11 @@ def main():
   shamir_mnemonic_group = shamir_mnemonic.generate_mnemonics(
       1, [(3, SHARE_COUNT)], master_secret)[0]
 
-  shamir_shares = ""
+  shamir_shares_md = ""
   i = 1
   for m in shamir_mnemonic_group:
-    shamir_shares += f"[{i}/{SHARE_COUNT}] `{m}`\n\n"
+    m_matrix = mdformatter.MarkdownFormatter.RenderWordListAsMatrix(m)
+    shamir_shares_md += f"[{i}/{SHARE_COUNT}]\n```\n{m_matrix}```\n\n"
     i += 1
 
   keys = [PasswordKey(master_secret_text.encode("utf-8"))]
@@ -134,7 +136,7 @@ def main():
   print("* Copy them by hand to five pieces of paper.")
   print("* Distribute the paper copies to people you trust. If three of them join their shares, they will have full access to your assets.")
   print()
-  print(shamir_shares)
+  print(shamir_shares_md)
 
   print("## Encrypted Backup")
   print(

@@ -27,8 +27,21 @@ class MarkdownFormatter():
     md += "\n"
     return md
 
+  @staticmethod
+  def RenderWordListAsMatrix(text):
+    words = text.split()
+    text = ""
+    i = 0
+    for word in words:
+      text += word + " "
+      i += 1
+      if i % 4 == 0:
+        text += "\n"
+    return text
+
   def render_words(self, text):
-    return f"* {'BIP-39 words:':<18}`{text}`\n"
+    text = MarkdownFormatter.RenderWordListAsMatrix(text)
+    return f"* {'BIP-39 words:':<18}\n```\n{text}```\n"
 
   def render_passphrase(self, text):
     return f"* {'BIP-39 passphrase:':<18}`{text}`\n"
