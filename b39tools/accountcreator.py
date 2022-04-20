@@ -1,5 +1,3 @@
-#!/bin/env python3
-
 import argparse
 import base64
 import io
@@ -16,6 +14,8 @@ from age.keys.password import PasswordKey
 from age.utils.asciiarmor import AGE_PEM_LABEL, AsciiArmoredOutput
 
 import b39tools.explorer as explorer
+import b39tools.mdformatter as mdformatter
+
 
 def main():
   MASTER_SECRET_LEN = 16
@@ -23,10 +23,12 @@ def main():
   BIP39_PASSPHRASE_LEN = 16
   SHARE_COUNT = 5
 
-  parser = argparse.ArgumentParser(description='Makes it easier to get going with BIP-39.')
+  parser = argparse.ArgumentParser(
+      description="Makes it easier to get going with BIP-39.")
   parser.add_argument("--account_name", help="use provided account name")
   parser.add_argument("--bip39_words", help="use provided BIP-39 words")
-  parser.add_argument("--bip39_passphrase", help="use provided BIP-39 passphrase")
+  parser.add_argument("--bip39_passphrase",
+                      help="use provided BIP-39 passphrase")
   args = parser.parse_args()
 
   m = mnemonic.Mnemonic(language="english")
@@ -39,24 +41,26 @@ def main():
   if args.bip39_passphrase:
     bip39_passphrase = args.bip39_passphrase
   else:
-    bip39_passphrase = base58.b58encode(secrets.token_bytes(BIP39_PASSPHRASE_LEN)).decode("utf-8")
+    bip39_passphrase = base58.b58encode(
+        secrets.token_bytes(BIP39_PASSPHRASE_LEN)).decode("utf-8")
 
-  plaintext    = f"{'BIP 39:':<12} {bip39_words}\n{'Passphrase:':<12} {bip39_passphrase}\n"
+  plaintext = f"{'BIP 39:':<12} {bip39_words}\n{'Passphrase:':<12} {bip39_passphrase}\n"
   plaintext_md = f"BIP 39: `{bip39_words}`\n\nPassphrase: `{bip39_passphrase}`\n"
 
   master_secret = secrets.token_bytes(MASTER_SECRET_LEN)
   master_secret_text = master_secret.hex()
 
-  shamir_mnemonic_group = shamir_mnemonic.generate_mnemonics(1, [(3, SHARE_COUNT)], master_secret)[0]
+  shamir_mnemonic_group = shamir_mnemonic.generate_mnemonics(
+      1, [(3, SHARE_COUNT)], master_secret)[0]
 
-  shamir_shares = ''
+  shamir_shares = ""
   i = 1
   for m in shamir_mnemonic_group:
     shamir_shares += f"[{i}/{SHARE_COUNT}] `{m}`\n\n"
     i += 1
 
   keys = [PasswordKey(master_secret_text.encode("utf-8"))]
-  plaintext_bytes = bytes(plaintext, encoding='utf-8')
+  plaintext_bytes = bytes(plaintext, encoding="utf-8")
   outbytes = io.BytesIO()
   with Encryptor(keys, outbytes) as encryptor:
     encryptor.write(plaintext_bytes)
@@ -69,7 +73,7 @@ def main():
   armored_text.write(f"-----BEGIN {label}-----\n")
   encoded = base64.b64encode(outbytes.getvalue()).decode("ascii")
   for i in range(0, len(encoded), 64):
-    chunk = encoded[i : i + 64]
+    chunk = encoded[i: i + 64]
     armored_text.write(chunk)
     armored_text.write("\n")
   armored_text.write(f"-----END {label}-----\n")
@@ -89,26 +93,23 @@ def main():
   with open(armored_text_filename, "w") as f:
     f.write(armored_text)
 
-  def render_account(u):
-    xpub = u.zpub84.hwif()
-    addr = u.chain84_addresses[0]
-    return f"* {'xpub:':<16} `{xpub}`\n* {'First address:':<16} `{addr}`\n"
-
-  def write_account_file(u, filename):
-    xpub = u.zpub84.hwif()
-    addr = u.chain84_addresses[0]
+  def write_account_info_to_file(info, filename):
     with open(filename, "w") as f:
-      f.write(f"{'xpub:':<16} {xpub}\n{'First address:':<16} {addr}\n")
+      f.write(info)
 
-  u = explorer.Bip32Explorer()
-  u.bip39_words = bip39_words
-  hot_account = render_account(u)
+  e = explorer.Bip32Explorer()
+
+  e.bip39_words = bip39_words
+  md = mdformatter.MarkdownFormatter(account_name + " Hot", e)
+  hot_account = md.RenderAccount()
   account_info_filename_hot = basename + "-hot.txt"
+  write_account_info_to_file(hot_account, account_info_filename_hot)
+
+  e.bip39_passphrase = bip39_passphrase
+  md = mdformatter.MarkdownFormatter(account_name + " Cold", e)
+  cold_account = md.RenderAccount()
   account_info_filename_cold = basename + "-cold.txt"
-  write_account_file(u, account_info_filename_hot)
-  u.bip39_passphrase = bip39_passphrase
-  cold_account = render_account(u)
-  write_account_file(u, account_info_filename_cold)
+  write_account_info_to_file(cold_account, account_info_filename_cold)
 
   print("#", account_name.upper())
   print("* This information should be generated and displayed only on an air-gapped computer.")
@@ -136,17 +137,19 @@ def main():
   print(shamir_shares)
 
   print("## Encrypted Backup")
-  print(f"* This is an age-encrypted copy of the BIP-39 seed words and passphrase. It is stored in this directory as `{armored_text_filename}`.")
-  print( "* It's OK to print this or store it on a computer, but keep it as private as possible.")
-  print(f"* You need the age encryption utility (`apt install age`) and the Age secret to decrypt it (`age -d {armored_text_filename}`).")
+  print(
+      f"* This is an age-encrypted copy of the BIP-39 seed words and passphrase. It is stored in this directory as `{armored_text_filename}`.")
+  print("* It's OK to print this or store it on a computer, but keep it as private as possible.")
+  print(
+      f"* You need the age encryption utility (`apt install age`) and the Age secret to decrypt it (`age -d {armored_text_filename}`).")
   print()
   print(f"```\n{armored_text}```")
-
-  print("## Bitcoin xpub and addresses")
-  print("* This information is useful for monitoring your balances without needing your BIP-39 seed words.")
-  print(f"* Two files containing this information have been written to this directory. They are called `{account_info_filename_hot}` and  `{account_info_filename_cold}`.")
   print()
-  print("### Hot account (no BIP-39 passphrase)")
+
+  print("## Account Extended Public Keys and addresses")
+  print("* This information is useful for monitoring your balances without needing your BIP-39 seed words.")
+  print(
+      f"* Two files containing this information have been written to this directory. They are called `{account_info_filename_hot}` and  `{account_info_filename_cold}`.")
+  print()
   print(hot_account)
-  print("### Cold account (BIP-39 passphrase)")
   print(cold_account)

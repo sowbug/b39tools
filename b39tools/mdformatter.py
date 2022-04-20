@@ -2,18 +2,19 @@ import sys
 
 import b39tools.explorer as explorer
 
+
 class MarkdownFormatter():
   def __init__(self, account_name, account_explorer):
     self.__account_name = account_name
     self.__account_explorer = account_explorer
 
   def render_account_header(self):
-    return f"# {self.__account_name.upper()}\n" 
+    return f"### {self.__account_name.upper()}\n"
 
   def render_chain(self, path_label, xpub, addresses):
-    md = ''
+    md = ""
 
-    md += f"### {path_label}\n"
+    md += f"#### {path_label}\n"
     md += self.render_xpub(xpub)
 
     for a in addresses:
@@ -23,26 +24,27 @@ class MarkdownFormatter():
             link = "https://www.blockchain.com/btc/address/%s" % a
         md += f"- [`{a}`]({link})\n"
 
+    md += "\n"
     return md
 
   def render_words(self, text):
-    return f"* {'BIP-39 words:':<16}`{text}`\n"
+    return f"* {'BIP-39 words:':<18}`{text}`\n"
 
   def render_passphrase(self, text):
-    return f"* {'BIP-39 passphrase:':<16}`{text}`\n"
+    return f"* {'BIP-39 passphrase:':<18}`{text}`\n"
 
   def render_seed(self, text):
     text = text.hex()
-    return f"* {'BIP-39 seed:':<16}`{text}`\n"
+    return f"* {'BIP-39 seed:':<18}`{text}`\n"
 
   def render_xpub(self, text):
-    return f"* {'xpub:':<16}`{text}`\n"
+    return f"* {'xpub:':<18}`{text}`\n"
 
   def render_xprv(self, text):
-    return f"* {'xprv:':<16}`{text}`\n"
+    return f"* {'xprv:':<18}`{text}`\n"
 
   def RenderAccount(self, include_private=False):
-    md = ''
+    md = ""
     e = self.__account_explorer
 
     md += self.render_account_header()
@@ -57,12 +59,16 @@ class MarkdownFormatter():
         md += self.render_xprv(e.bip32_root_key.hwif(as_private=True))
 
     if e.xpub44:
-      md += self.render_chain("m/44'/0'/0'", e.xpub44.hwif(), e.chain44_addresses)
+      md += self.render_chain("m/44'/0'/0' (Legacy)",
+                              e.xpub44.hwif(), e.chain44_addresses)
     if e.ypub49:
-      md += self.render_chain("m/49'/0'/0'", e.ypub49.hwif(), e.chain49_addresses)
+      md += self.render_chain("m/49'/0'/0' (Segwit)",
+                              e.ypub49.hwif(), e.chain49_addresses)
     if e.zpub84:
-      md += self.render_chain("m/84'/0'/0'", e.zpub84.hwif(), e.chain84_addresses)
+      md += self.render_chain("m/84'/0'/0' (Native Segwit)",
+                              e.zpub84.hwif(), e.chain84_addresses)
     if e.xpub60:
-      md += self.render_chain("m/44'/60'/0'", e.xpub60.hwif(), e.chain60_addresses)
+      md += self.render_chain("m/44'/60'/0' (Ethereum)",
+                              e.xpub60.hwif(), e.chain60_addresses)
 
     return md
