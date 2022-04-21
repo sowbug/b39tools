@@ -53,8 +53,8 @@ def main():
         secrets.token_bytes(BIP39_PASSPHRASE_LEN)).decode("utf-8")
 
   bip39_words_as_matrix = mdformatter.MarkdownFormatter.RenderWordListAsMatrix(bip39_words)
-  plaintext = f"{'BIP 39:':<12} {bip39_words}\n{'Passphrase:':<12} {bip39_passphrase}\n"
-  plaintext_md = f"### BIP 39\n```\n{bip39_words_as_matrix}```\n### Passphrase\n```\n{bip39_passphrase}\n```\n"
+  plaintext = f"{'BIP-39 Seed Phrase:':<12} {bip39_words}\n{'BIP-39 Passphrase:':<12} {bip39_passphrase}\n"
+  plaintext_md = f"### BIP-39 Seed Phrase\n```\n{bip39_words_as_matrix}```\n### BIP-39 Passphrase\n```\n{bip39_passphrase}\n```\n"
 
   master_secret = secrets.token_bytes(MASTER_SECRET_LEN)
   master_secret_text = master_secret.hex()
@@ -134,36 +134,23 @@ def main():
 
   print("## BIP-39")
   print("* These are your BIP-39 seed words and passphrase.")
-  print("* Anyone who has these words has full access to your assets.")
   print(f"* Copy them by hand to at least one paper backup. Use `{DATA_FILES['seed']}` as a template.")
-  print("* Protect the paper backups as carefully as you'd protect a million-dollar bill.")
-  print("* Never type these words into a computer.")
-  print("* Never tell these words to anyone.")
   print()
   print(plaintext_md)
 
   print("## Shamir")
   print("* These are your five Shamir shares that encode the Age secret.")
-  print("* You need the python-shamir-mnemonic utility (`pip3 install shamir-mnemonic`) and at least three of the shares to recover the Age secret (`shamir recover`).")
   print(f"* Copy them by hand to five pieces of paper. Use `{DATA_FILES['shamir']}` as a template.")
-  print("* Distribute the paper copies to people you trust. If three of them join their shares, they will have full access to your assets.")
   print()
   print(shamir_shares_md)
 
   print("## Encrypted Backup")
-  print(
-      f"* This is an age-encrypted copy of the BIP-39 seed words and passphrase. It is stored in this directory as `{armored_text_filename}`.")
-  print("* It's OK to print this or store it on a computer, but keep it as private as possible.")
-  print(
-      f"* You need the age encryption utility (`apt install age`) and the Age secret to decrypt it (`age -d {armored_text_filename}`).")
-  print()
-  print(f"```\n{armored_text}```")
+  print(f"The file `{armored_text_filename}` has been written to this directory.")
+  print("It contains an age-encrypted copy of the BIP-39 seed words and passphrase.")
+  print("It's OK to print this or store it on a computer, but you should keep it as private as possible.")
   print()
 
   print("## Account Extended Public Keys and addresses")
-  print("* This information is useful for monitoring your balances without needing your BIP-39 seed words.")
-  print(
-      f"* Two files containing this information have been written to this directory. They are called `{account_info_filename_hot}` and  `{account_info_filename_cold}`.")
+  print(f"Two files named `{account_info_filename_hot}` and `{account_info_filename_cold}` have been written to this directory.")
+  print("They contain extra information that is useful for monitoring your balances without needing to expose your BIP-39 seed words on a computer.")
   print()
-  print(hot_account)
-  print(cold_account)
