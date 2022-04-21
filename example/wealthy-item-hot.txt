@@ -1,0 +1,33 @@
+### WEALTHY ITEM HOT
+#### m/44'/0'/0' (Legacy)
+* xpub:               `xpub6DPEGumtC1pdnwRvHFsPJnSq65JmwAub2UNGUmzzptXFrHiERZ8ZNfGifjT4UCDcthVY4k5Aygm611cZKjZ5U6b63dAUzuPB5tMqvg27TFX`
+- [`1Hy9XB49Wx4mw7ZdGJwEA4Tce1vgeBC3bX`](https://www.blockchain.com/btc/address/1Hy9XB49Wx4mw7ZdGJwEA4Tce1vgeBC3bX)
+- [`1HZbFxtQ6YjuMYQAGJeXveeTCFHhp8CgQF`](https://www.blockchain.com/btc/address/1HZbFxtQ6YjuMYQAGJeXveeTCFHhp8CgQF)
+- [`1A49b1KuuCt67CsXvzPfXnN5ZTZXBAJD6x`](https://www.blockchain.com/btc/address/1A49b1KuuCt67CsXvzPfXnN5ZTZXBAJD6x)
+- [`17jJxAqkwDVzCHjZ9jNwah2HYp16YPqovP`](https://www.blockchain.com/btc/address/17jJxAqkwDVzCHjZ9jNwah2HYp16YPqovP)
+- [`1LupXHVY4zUe25EtD3SaBNvsC8321W2AcJ`](https://www.blockchain.com/btc/address/1LupXHVY4zUe25EtD3SaBNvsC8321W2AcJ)
+
+#### m/49'/0'/0' (Segwit)
+* xpub:               `ypub6XyhmBPGyoyi44h5dvpvxfPDbmYhaUtjHhwVxEbeEkMVbHpuNWnsjA49i512pw6UBBggMvmMYQ94gbkR1VE2VEkHqx2GvyAfBJ59LqaAD56`
+- [`385gUiKeajbRGLazbtKFBsq8oMozUZGQcg`](https://www.blockchain.com/btc/address/385gUiKeajbRGLazbtKFBsq8oMozUZGQcg)
+- [`3HjwqYjfS2iPhMShDxxoQUs4evmCUEcG2v`](https://www.blockchain.com/btc/address/3HjwqYjfS2iPhMShDxxoQUs4evmCUEcG2v)
+- [`32tGvNcVG1SqNkUmbG4UnBUCD1jeuJVT9k`](https://www.blockchain.com/btc/address/32tGvNcVG1SqNkUmbG4UnBUCD1jeuJVT9k)
+- [`3ANmGXbGH1cF6mHVM2foM1dXp1F9r3DHMo`](https://www.blockchain.com/btc/address/3ANmGXbGH1cF6mHVM2foM1dXp1F9r3DHMo)
+- [`3LuSjrrDQ4jNiFkFt3FJGHiqXQtSB7F1zt`](https://www.blockchain.com/btc/address/3LuSjrrDQ4jNiFkFt3FJGHiqXQtSB7F1zt)
+
+#### m/84'/0'/0' (Native Segwit)
+* xpub:               `zpub6r3RmSdgQkrsNruJPMJ5PMkk5fiy6ewqJxu6DFgCMU3Y4JfSv2XsgTb76Q1FWX8kUdnPa8qJn3Z5SCbBDNz3nVqu5SnZJNVCtTJvL7yqUKb`
+- [`bc1qjednxls6855nzgspr0f405h4k9n3kqwy9wqphs`](https://www.blockchain.com/btc/address/bc1qjednxls6855nzgspr0f405h4k9n3kqwy9wqphs)
+- [`bc1q45hjt9xe2ax9j645uhe29lj66ln5knf5jzungg`](https://www.blockchain.com/btc/address/bc1q45hjt9xe2ax9j645uhe29lj66ln5knf5jzungg)
+- [`bc1qk9cdv2tcqya5zrev2a2xlcqt73xqu05rzft84c`](https://www.blockchain.com/btc/address/bc1qk9cdv2tcqya5zrev2a2xlcqt73xqu05rzft84c)
+- [`bc1q6x836q8vkmdl4t7w7tuwq4jmruxm4sqm7xnedx`](https://www.blockchain.com/btc/address/bc1q6x836q8vkmdl4t7w7tuwq4jmruxm4sqm7xnedx)
+- [`bc1q2eftd4yfyfuch5pc0ugw73fu23nfmvv8qp3gn6`](https://www.blockchain.com/btc/address/bc1q2eftd4yfyfuch5pc0ugw73fu23nfmvv8qp3gn6)
+
+#### m/44'/60'/0' (Ethereum)
+* xpub:               `xpub6CLYnXk21px9X7WnWVT1epwGdRm4NTYPhGKuwcjTxzhDjkBCzqrqLwAqdqWbrkyKRktWUT8fXdJxGHZAxinnqstpU44e1ps3fz7imkUTeFo`
+- [`0x64d5903a33f6fce7074780fb7cc571a4bb2bf773`](https://etherscan.io/address/0x64d5903a33f6fce7074780fb7cc571a4bb2bf773)
+- [`0x1ab5c15ee85d00a4ba46dab6430ab21933c55cc8`](https://etherscan.io/address/0x1ab5c15ee85d00a4ba46dab6430ab21933c55cc8)
+- [`0x3ecf6f1c499593845b9c27d94349b105742d4e04`](https://etherscan.io/address/0x3ecf6f1c499593845b9c27d94349b105742d4e04)
+- [`0x65a2b8e8176b31891c1ea61713199815764a4215`](https://etherscan.io/address/0x65a2b8e8176b31891c1ea61713199815764a4215)
+- [`0xf4082f2db1da9fb1c44f7222ca7c5d31ae52cfe8`](https://etherscan.io/address/0xf4082f2db1da9fb1c44f7222ca7c5d31ae52cfe8)
+

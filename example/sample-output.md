@@ -1,8 +1,9 @@
-# MUSCLE ALWAYS
+# WEALTHY ITEM
 * This information should be generated and displayed only on an air-gapped computer.
 * You should copy information by hand to paper as instructed.
 * You should keep the generated files as instructed.
 * Do not photograph this text or otherwise attempt to copy it, except as instructed.
+* Read `howto-creation.md` and `howto-recovery.md` for more instructions.
 
 ## BIP-39
 * These are your BIP-39 seed words and passphrase.
@@ -10,16 +11,16 @@
 
 ### BIP-39 Seed Phrase
 ```
- 1 rubber    2 response  3 wheat     4 raw      
- 5 conduct   6 tired     7 try       8 deposit  
- 9 desk     10 airport  11 toward   12 book     
-13 manual   14 witness  15 cube     16 boy      
-17 next     18 young    19 curve    20 pizza    
-21 island   22 era      23 quote    24 finger   
+ 1 grief     2 admit     3 safe      4 spare    
+ 5 already   6 caution   7 chicken   8 reflect  
+ 9 gather   10 home     11 venture  12 tomato   
+13 uncle    14 robust   15 marriage 16 actor    
+17 sketch   18 endless  19 deer     20 lumber   
+21 nice     22 notable  23 organ    24 betray   
 ```
 ### BIP-39 Passphrase
 ```
-PMSP2drH1jZYdYWb488wgf
+2ooBBmnk7eMtp5W8RmFLTe
 ```
 
 ## Shamir
@@ -28,56 +29,56 @@ PMSP2drH1jZYdYWb488wgf
 
 [1/5]
 ```
- 1 muscle    2 always    3 academic  4 acne     
- 5 alive     6 bulge     7 fawn      8 disaster 
- 9 together 10 valuable 11 plan     12 flea     
-13 counter  14 spit     15 march    16 liberty  
-17 check    18 health   19 elder    20 romp     
+ 1 wealthy   2 item      3 academic  4 acne     
+ 5 blessing  6 staff     7 various   8 traffic  
+ 9 society  10 zero     11 saver    12 acne     
+13 cage     14 lunch    15 breathe  16 firefly  
+17 course   18 center   19 pregnant 20 prospect 
 ```
 
 [2/5]
 ```
- 1 muscle    2 always    3 academic  4 agree    
- 5 apart     6 divorce   7 much      8 silent   
- 9 sweater  10 crowd    11 domain   12 costume  
-13 drug     14 debut    15 holy     16 pipeline 
-17 discuss  18 grownup  19 welfare  20 budget   
+ 1 wealthy   2 item      3 academic  4 agree    
+ 5 carve     6 starting  7 editor    8 guard    
+ 9 valuable 10 brave    11 lobe     12 spray    
+13 percent  14 pipeline 15 surface  16 memory   
+17 twice    18 elevator 19 strategy 20 capture  
 ```
 
 [3/5]
 ```
- 1 muscle    2 always    3 academic  4 amazing  
- 5 charity   6 drift     7 photo     8 spill    
- 9 wavy     10 evidence 11 literary 12 clothes  
-13 spark    14 chest    15 lips     16 indicate 
-17 tactics  18 plunge   19 spirit   20 envelope 
+ 1 wealthy   2 item      3 academic  4 amazing  
+ 5 darkness  6 total     7 upstairs  8 royal    
+ 9 liberty  10 ultimate 11 smell    12 guitar   
+13 muscle   14 estate   15 tracks   16 march    
+17 empty    18 market   19 negative 20 curious  
 ```
 
 [4/5]
 ```
- 1 muscle    2 always    3 academic  4 arcade   
- 5 criminal  6 busy      7 guard     8 company  
- 9 satoshi  10 mineral  11 bolt     12 firm     
-13 screw    14 security 15 grief    16 funding  
-17 scatter  18 pharmacy 19 hobo     20 mixed    
+ 1 wealthy   2 item      3 academic  4 arcade   
+ 5 clogs     6 tracks    7 elephant  8 expand   
+ 9 party    10 answer   11 makeup   12 reward   
+13 dance    14 havoc    15 client   16 filter   
+17 location 18 unusual  19 unfair   20 library  
 ```
 
 [5/5]
 ```
- 1 muscle    2 always    3 academic  4 axle     
- 5 again     6 spit      7 idea      8 warmth   
- 9 payment  10 short    11 salt     12 unfair   
-13 browser  14 regret   15 source   16 screw    
-17 result   18 imply    19 debut    20 aluminum 
+ 1 wealthy   2 item      3 academic  4 axle     
+ 5 boundary  6 iris      7 salon     8 false    
+ 9 glimpse  10 type     11 jump     12 bulge    
+13 velvet   14 cradle   15 laden    16 usher    
+17 starting 18 client   19 prevent  20 yoga     
 ```
 
 
 ## Encrypted Backup
-The file `muscle-always.age` has been written to this directory.
+The file `wealthy-item.age` has been written to this directory.
 It contains an age-encrypted copy of the BIP-39 seed words and passphrase.
 It's OK to print this or store it on a computer, but you should keep it as private as possible.
 
 ## Account Extended Public Keys and addresses
-Two files named `muscle-always-hot.txt` and `muscle-always-cold.txt` have been written to this directory.
+Two files named `wealthy-item-hot.txt` and `wealthy-item-cold.txt` have been written to this directory.
 They contain extra information that is useful for monitoring your balances without needing to expose your BIP-39 seed words on a computer.
 

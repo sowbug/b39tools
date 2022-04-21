@@ -29,6 +29,8 @@ def main():
   DATA_FILES = {
     'seed': "bip-39-seed-sheet.pdf",
     'shamir': "slip-0039-shamir-share-sheet.pdf",
+    'create': "howto-creation.md",
+    'recover': "howto-recovery.md",
   }
 
   parser = argparse.ArgumentParser(
@@ -130,6 +132,7 @@ def main():
   print("* You should copy information by hand to paper as instructed.")
   print("* You should keep the generated files as instructed.")
   print("* Do not photograph this text or otherwise attempt to copy it, except as instructed.")
+  print(f"* Read `{DATA_FILES['create']}` and `{DATA_FILES['recover']}` for more instructions.")
   print()
 
   print("## BIP-39")

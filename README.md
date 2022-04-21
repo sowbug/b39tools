@@ -76,7 +76,7 @@ part of the power of BIP-32 and BIP-39 is that they're the basis of many
 different kinds of virtual assets, you can use a single 24-word seed (and
 optional passphrase) to derive sub-accounts for many asset types.
 
-## Usage (Detailed)
+## Why creating a BIP-39 account safely is hard
 
 This section discusses pitfalls of self-custody of a BIP-39 seed phrase and
 passphrase (or "seed" for short), and then where the `create-bip39-account`
@@ -180,86 +180,28 @@ computer that leaves no traces when it shuts down):
 
 1. It displays the seed on-screen, rather than writing it to disk, and instructs
    the user to write it down, by hand, on paper (suggested format for printed
-   copy in `docs/`).
+   copy: `b39tools/docs/bip-39-seed-sheet.pdf`).
 
 1. It generates *but does not display* a 128-bit symmetric-encryption
    passphrase. Rather, it encodes the passphrase into five 20-word shares
    using
    [a relatively standardized variant](https://github.com/satoshilabs/slips/blob/master/slip-0039.md)
-   of Shamir's Secret Sharing Scheme. As with the seed, it instructs the user
-   to write down each share on paper (suggested format in `docs/`).
+   of Shamir's Secret Sharing Scheme. It instructs the user
+   to write down each share on paper (suggested format: `b39tools/docs/slip-0039-shamir-share-sheet.pdf`).
 
 1. It creates a file containing the seed, encrypted with the 128-bit
    passphrase. You'll need at least three of the Shamir shares to recover
    that passphrase, and then the `age` utility to decrypt the file with
    the passphrase.
 
-1. It creates two files containing public information describing the account.
+1. It creates files containing public information describing the account,
+   which is useful to monitor account balances without needing to expose the
+   seed.
 
-At this point, the user should do the following:
+## Using create-bip39-account
 
-1. As instructed, make at least one handwritten copy of the seed words and
-   passphrase (we recommend four copies). These will be called the Seed
-   Copies. You can skip this and use only the Shamir shares plus the `.age`
-   file, but that means that you won't know what the seed is unless you
-   recover the Shamir secret, which is complicated.
+See [howto-creation.md](b39tools/docs/howto-creation.md) for instructions, and then [howto-recovery.md](b39tools/docs/howto-recover.md) to see how to recover the seed/passphrase from the generated documents.
 
-1. As instructed, hand-write the five sets of Shamir words on five separate
-   pieces of paper. These will be called the Shamir Shares.
-
-1. Copy the three generated files to a USB drive, and then copy them to safe
-   online backup. The `xxxxx-xxxxx.age` file is especially important, so
-   don't lose it.
-
-1. Shut down the air-gapped PC. Now the only artifacts of the process are the
-   files, the Seed Copies, and the Shamir Shares.
-
-1. Laminate or otherwise protect the Seed Copies and Shamir Shares. Ideally,
-   you'll fold the paper so that the important information is hidden before
-   laminating, so that you have to cut open the lamination to see the
-   sensitive stuff. This discourages casual snoopers from finding a Seed Copy
-   and snapping a quick phone picture of it.
-
-1. Put the Seed Copies in locations that are (1) geographically
-   distributed, (2) safe from discovery, and (3) in places you'll remember.
-
-1. Give the Shamir Shares to five different people or institutions. For
-   example, you might give one to an attorney. You might put another in a
-   safe-deposit box. If you work somewhere that has a safe, you might put a
-   third share in there. You should also give instructions for what to do with
-   the shares. For example: "Please keep this document safe and secure, as you
-   would your own birth certificate or passport. Don't let anyone see it. If I
-   die, please give it to the executor of my estate. If I'm legally
-   incapacitated, please give it to my legal guardian."
-
-1. If you have a will, add instructions to recover the Shamir Shares. Your
-   executor probably won't know where they are, so list who has them.
-
-1. Now your BIP-39 words and passphrase are well-protected. Using one of the
-   Seed Copies, set up at least one hardware wallet, then fund it!
-
-## Recovery
-
-1. If you kept a Seed Copy, use one (maybe having to remove the lamination
-   in the process). You're done.
-
-1. Alternatively, get at least Shamir Shares and a copy of the
-   `xxxxx-xxxxx.age` file that you saved from earlier.
-
-1. Boot into [Tails](https://tails.boum.org/) on a PC you trust.
-
-1. Install [python-shamir-mnemonic](https://github.com/trezor/python-shamir-mnemonic)
-   and [age](https://github.com/FiloSottile/age).
-
-1. Using `shamir recover`, enter the share words as prompted. Note the
-   passphrase it produces. It will be a long string of hexadecimal digits,
-   like `000102030405060708090a0b0c0d0e0f`.
-
-1. Using `age -d xxxxx-xxxxx.age` and the passphrase you recovered from the
-   Shamir Shares, decrypt the `.age` file and note the BIP-39 seed and
-   passphrase.
-
-1. Set up your new hardware wallet using the recovered seed/passphrase.
 ## Alternate solutions
 
 * [Multisig](https://btcguide.github.io/) (also discussed
