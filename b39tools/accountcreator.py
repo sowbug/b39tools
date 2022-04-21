@@ -1,8 +1,11 @@
 import argparse
 import base64
+import importlib.resources
 import io
+import os
 import re
 import secrets
+import shutil
 import sys
 import typing
 
@@ -22,6 +25,11 @@ def main():
   BIP39_STRENGTH = 256
   BIP39_PASSPHRASE_LEN = 16
   SHARE_COUNT = 5
+
+  DATA_FILES = {
+    'seed': "bip-39-seed-sheet.pdf",
+    'shamir': "slip-0039-shamir-share-sheet.pdf",
+  }
 
   parser = argparse.ArgumentParser(
       description="Makes it easier to get going with BIP-39.")
@@ -113,6 +121,10 @@ def main():
   account_info_filename_cold = basename + "-cold.txt"
   write_account_info_to_file(cold_account, account_info_filename_cold)
 
+  for f in DATA_FILES.values():
+    with importlib.resources.path("b39tools.docs", f) as data_file_path:
+      shutil.copy2(data_file_path, os.getcwd())
+
   print("#", account_name.upper())
   print("* This information should be generated and displayed only on an air-gapped computer.")
   print("* You should copy information by hand to paper as instructed.")
@@ -123,7 +135,7 @@ def main():
   print("## BIP-39")
   print("* These are your BIP-39 seed words and passphrase.")
   print("* Anyone who has these words has full access to your assets.")
-  print("* Copy them by hand to at least one paper backup.")
+  print(f"* Copy them by hand to at least one paper backup. Use `{DATA_FILES['seed']}` as a template.")
   print("* Protect the paper backups as carefully as you'd protect a million-dollar bill.")
   print("* Never type these words into a computer.")
   print("* Never tell these words to anyone.")
@@ -133,7 +145,7 @@ def main():
   print("## Shamir")
   print("* These are your five Shamir shares that encode the Age secret.")
   print("* You need the python-shamir-mnemonic utility (`pip3 install shamir-mnemonic`) and at least three of the shares to recover the Age secret (`shamir recover`).")
-  print("* Copy them by hand to five pieces of paper.")
+  print(f"* Copy them by hand to five pieces of paper. Use `{DATA_FILES['shamir']}` as a template.")
   print("* Distribute the paper copies to people you trust. If three of them join their shares, they will have full access to your assets.")
   print()
   print(shamir_shares_md)
