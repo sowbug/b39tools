@@ -27,13 +27,17 @@ class MarkdownFormatter():
     md += "\n"
     return md
 
+  # According to
+  # `awk '{print length}' "bip39-wordlist.txt" | sort -rn | head -1`,
+  # the longest English BIP-39 word is 8 characters. Same with
+  # the SLIP-0039 wordlist. 
   @staticmethod
   def RenderWordListAsMatrix(text):
     words = text.split()
     text = ""
     i = 0
     for word in words:
-      text += word + " "
+      text += f"{i+1:>2} {word:<8} "
       i += 1
       if i % 4 == 0:
         text += "\n"
