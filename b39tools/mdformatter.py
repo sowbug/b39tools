@@ -1,3 +1,5 @@
+# https://github.com/sowbug/b39tools/
+
 import sys
 
 import b39tools.explorer as explorer

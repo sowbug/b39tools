@@ -1,3 +1,5 @@
+# https://github.com/sowbug/b39tools/
+
 import sha3
 from mnemonic import Mnemonic
 from pycoin.encoding.hexbytes import b2h, h2b
