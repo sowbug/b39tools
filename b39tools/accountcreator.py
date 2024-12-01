@@ -71,7 +71,7 @@ safely. To proceed, you will need the following:
 
   # Display warnings.
   print("\033[2J")
-  print("""\033[5mWARNING! Please read carefully.\033[0m]
+  print("""\033[5mWARNING! Please read carefully.\033[0m
 
 BIP39 secrets are like cash. If you lose them, your funds will be gone forever.
 If someone else takes them, they can spend the funds, and you will never get
